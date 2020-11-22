@@ -1,33 +1,34 @@
-import { OVERVIEW_BEGIN, OVERVIEW_END, OVERVIEW_SUCCESS, OVERVIEW_SHOW_ALERT, OVERVIEW_HIDE_ALERT, CLEAR_OVERVIEW_STATES } from '../constants/overviewConstants';
+import { COUNTRIES_BEGIN, COUNTRIES_END, COUNTRIES_SUCCESS, COUNTRIES_SHOW_ALERT, COUNTRIES_HIDE_ALERT, CLEAR_COUNTRIES_STATES } from '../constants/contriesConstants';
 
 const initialState = {
   loading: false,
   alert: {
-    message: '',
     isOpen: false,
+    message: '',
     type: null
   },
-  overviewData: [],
+  countries: [],
+  countryDetails: null,
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case OVERVIEW_BEGIN:
+    case COUNTRIES_BEGIN:
       return {
         ...state,
         loading: true,
       }
-    case OVERVIEW_END:
+    case COUNTRIES_END:
       return {
         ...state,
         loading: false,
       }
-    case OVERVIEW_SUCCESS:
+    case COUNTRIES_SUCCESS:
       return {
         ...state,
-        overviewData: action.payload
+        countries: action.payload
       }
-    case OVERVIEW_SHOW_ALERT:
+    case COUNTRIES_SHOW_ALERT:
       return {
         ...state,
         alert: {
@@ -36,7 +37,7 @@ const reducer = (state = initialState, action) => {
           type: action.payload.type,
         }
       }
-    case OVERVIEW_HIDE_ALERT:
+    case COUNTRIES_HIDE_ALERT:
       return {
         ...state,
         alert: {
@@ -44,17 +45,6 @@ const reducer = (state = initialState, action) => {
           message: '',
           type: null,
         }
-      }
-    case CLEAR_OVERVIEW_STATES:
-      return {
-        ...state,
-        loading: false,
-        alert: {
-          message: '',
-          isOpen: false,
-          type: null
-        },
-        overviewData: [],
       }
     default:
       return {

@@ -1,4 +1,4 @@
-import { OVERVIEW_BEGIN, OVERVIEW_END, OVERVIEW_SUCCESS, OVERVIEW_FAILED, CLEAR_OVERVIEW_STATES } from '../constants/overviewConstants';
+import { OVERVIEW_BEGIN, OVERVIEW_END, OVERVIEW_SUCCESS, OVERVIEW_SHOW_ALERT, OVERVIEW_HIDE_ALERT, CLEAR_OVERVIEW_STATES } from '../constants/overviewConstants';
 import axios from 'axios';
 
 export const overviewBegin = () => ({ type: OVERVIEW_BEGIN });
@@ -10,11 +10,14 @@ export const overviewSuccess = (result) => ({
   payload: result
 });
 
-export const overviewFailed = (error) => ({
-  type: OVERVIEW_FAILED,
-  payload: error
+export const overviewShowAlert = (alertData) => ({
+  type: OVERVIEW_SHOW_ALERT,
+  payload: alertData
 });
 
+export const overviewHideAlert = () => ({
+  type: OVERVIEW_HIDE_ALERT,
+});
 export const getSummaryGlobal = () => async (dispatch) => {
   dispatch(overviewBegin());
 
@@ -26,12 +29,12 @@ export const getSummaryGlobal = () => async (dispatch) => {
       dispatch(overviewSuccess(result.data));
     } else {
       dispatch(overviewEnd());
-      dispatch(overviewFailed('An error occured while fetching data.'));
+      dispatch(overviewShowAlert({ message: 'An error occured while fetching data.', type: 'error' }));
 
     }
   } catch (err) {
     dispatch(overviewEnd());
-    dispatch(overviewFailed(err));
+    dispatch(overviewShowAlert({ message: err, type: 'error' }));
   }
 };
 

@@ -21,7 +21,6 @@ const Overview = (props) => {
   }, []);
 
   const { Global, Date } = overviewData;
-  console.log(overviewData);
   return (
     <MainContainer>
       <Typography variant="h2">Overview</Typography>

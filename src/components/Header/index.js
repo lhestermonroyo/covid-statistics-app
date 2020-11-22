@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { withStyles, AppBar, Toolbar, Button, Container, IconButton } from '@material-ui/core';
 import { BlurCircular } from '@material-ui/icons';
 import styles from './styles';

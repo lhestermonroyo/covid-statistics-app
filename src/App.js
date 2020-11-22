@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { MuiThemeProvider } from '@material-ui/core';
 import Header from './components/Header';
 import Overview from './pages/Overview';
+import Countries from './pages/Countries';
 import theme from './muiTheme';
 import store from './store';
 
@@ -15,6 +16,7 @@ const App = () => {
           <Header />
           <Switch>
             <Route exact path="/" component={Overview} />
+            <Route exact path="/countries" component={Countries} />
           </Switch>
         </HashRouter>
       </MuiThemeProvider>
